@@ -1,0 +1,26 @@
+{
+    "status": true,
+    "request": {
+        "path": "/sholat/jadwal/1301/2024-03-10",
+        "year": "2024",
+        "month": "03",
+        "date": "10"
+    },
+    "data": {
+        "id": 1301,
+        "lokasi": "KOTA JAKARTA",
+        "daerah": "DKI JAKARTA",
+        "jadwal": {
+            "tanggal": "Minggu, 10/03/2024",
+            "imsak": "04:33",
+            "subuh": "04:43",
+            "terbit": "05:55",
+            "dhuha": "06:22",
+            "dzuhur": "12:06",
+            "ashar": "15:10",
+            "maghrib": "18:11",
+            "isya": "19:20",
+            "date": "2024-03-10"
+        }
+    }
+}
