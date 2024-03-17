@@ -1,0 +1,208 @@
+html {
+    margin: 0; 
+    padding: 0;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    background-image: linear-gradient(to right, #f2f2f2, #edf1fa);
+    color: #212121;
+    font-size: 12px;
+    min-height: 100%;
+    min-width: 320px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+section {
+    padding-top: 70px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+mark {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 0em 0.1em; /* height and width */
+    margin: 0.3em; /* margin for spacing */
+}
+
+.shape-header {
+    height: 150px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.shape-header.fullwidth {
+    height: 150px;
+}
+
+.shape-header.fullwidth .img-header {
+    height: 150px;
+    line-height: 150px;
+    width: 100%
+}
+
+.img-header {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .12);
+    box-sizing: content-box;
+    height: 150px;
+    width: 920px;
+    border: 5px solid #eeeeee;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+.Carousel-slider {
+    height: 930px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.Carousel-slider.fullwidth {
+    height: 900px;
+}
+
+.Carousel-slider.fullwidth.slider-item {
+    height: 900px;
+    line-height: 900px;
+    width: 100%
+}
+
+.slider-item {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .12);
+    display: none;
+    height: 900px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 900px;
+    border: 5px solid #eeeeee;
+}
+
+.Shape-info {
+    height: 180px;
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 130px;
+    margin-bottom: 130px;
+}
+
+.Shape-info.fullwidth {
+    height: 150px;
+}
+
+.Shape-info.fullwidth.frame-info {
+    height: 150px;
+    line-height: 150px;
+    width: 100%
+}
+
+.frame-info {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .12);
+    height: 270px;
+    width: 920px;
+    border: 5px solid #eeeeee;
+    border-radius: 15px;
+    margin: auto;
+    display: block;
+}
+
+.cairo {
+  font-family: "Cairo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 50px;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+}
+
+/* Centering the rectangle */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the container covers the entire viewport */
+}
+
+/* Rectangle styles */
+.rectangle {
+    width: 90%; /* Responsive width */
+    width: 920px; /* Limiting maximum width */
+    height: 250px; /* Fixed height */
+    background-color: #01370A;
+    border: #eeeeee;
+    border-radius: 20px;
+    text-align: center; /* Centering text horizontally */
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #FF6B07;
+}
+
+.waktuSekarang {
+    font-size: 30px;
+    line-height: 1.5;
+    color: #eeeeee;
+}
+
+.imageheader {
+    background: url(../images/header.png);
+    border-radius: 20px !important;
+}
+
+.jadwalsholatndonasi {
+    background: url(../images/jdwslt.png);
+    border-radius: 20px !important;
+}
+
+.poster1 {
+    background-image: url(../images/poster1.png);
+    border-radius: 25px !important;
+}
+
+.poster2 {
+    background: url(../images/poster2.png);
+    border-radius: 25px !important;
+}
+
+.poster3 {
+    background: url(../images/poster3.png);
+    border-radius: 25px !important;
+}
+
+.poster4 {
+    background: url(../images/poster4.png);
+    border-radius: 25px !important;
+}
+
+.poster5 {
+    background: url(../images/poster5.png);
+    border-radius: 25px !important;
+}
+
+.posterinfo1 {
+    background: url(../images/info1.png);
+    border-radius: 20px !important;
+}
+
+.imagefooter {
+    background: url(../images/footer.png);
+    border-radius: 20px !important;
+}

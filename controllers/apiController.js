@@ -1,4 +1,4 @@
-const formatDate = require("./formatDate.js");
+const formatDate = require("./dateController.js");
 
 const today = new Date();
 const formattedDate = formatDate(today);
@@ -14,7 +14,6 @@ const fetchRequest = fetch(`https://api.myquran.com/v2/sholat/jadwal/${kota}/${f
     return response.json();
   })
   .then((request) => {
-    // console.log("Received JSON request", request.data.jadwal);
     return request; 
   })
   .catch((error) => {

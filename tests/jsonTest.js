@@ -2,8 +2,6 @@ const fs = require("fs");
 const now = new Date();
 const currentDateTime = now.toLocaleString();
 
-console.log("Date and Time:", currentDateTime);
-
 // Read the JSON file
 fs.readFile("jadwalSholat.json", "utf8", (err, data) => {
   if (err) {
@@ -14,7 +12,4 @@ fs.readFile("jadwalSholat.json", "utf8", (err, data) => {
   const jsonData = JSON.parse(data);
   const timings = jsonData.data.timings;
   const fajrTime = timings.Fajr;
-
-  console.log("Timings:", timings);
-  console.log("Fajr Time:", fajrTime);
 });
