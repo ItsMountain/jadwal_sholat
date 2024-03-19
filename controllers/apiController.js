@@ -23,3 +23,4 @@ const fetchRequest = fetch(`https://api.myquran.com/v2/sholat/jadwal/${kota}/${f
   });
 
 module.exports = fetchRequest;
+

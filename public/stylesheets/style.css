@@ -8,6 +8,7 @@ html {
 
 body {
     background-image: linear-gradient(to right, #f2f2f2, #edf1fa);
+    /* background-color: grey; */
     color: #212121;
     font-size: 12px;
     min-height: 100%;
@@ -141,8 +142,8 @@ mark {
     width: 920px; /* Limiting maximum width */
     height: 250px; /* Fixed height */
     background-color: #01370A;
-    border: #eeeeee;
-    border-radius: 20px;
+    border: 5px solid #eeeeee;
+    border-radius: 15px;
     text-align: center; /* Centering text horizontally */
     padding: 20px;
     margin: auto;
@@ -159,6 +160,13 @@ mark {
 .waktuSekarang {
     font-size: 30px;
     line-height: 1.5;
+    color: #eeeeee;
+}
+
+.dev { /* penulis memohonkan agar tidak dihapus 🙏 */
+    font-size: 18px;
+    padding-right: 805px;
+    padding-top: 15px;
     color: #eeeeee;
 }
 

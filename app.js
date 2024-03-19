@@ -22,8 +22,7 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 // wait for the fetchRequest to resolve and then render the page
-fetchRequest
-  .then((waktu) => {
+fetchRequest.then((waktu) => {
     const jadwalData = waktu.data.jadwal;
     const tanggal = jadwalData.tanggal;
     const waktuSubuh = jadwalData.subuh;
@@ -66,3 +65,28 @@ fetchRequest
 app.listen(port, () => {
   console.log(`App listening on http://localhost:${port}/`);
 });
+
+
+// tests here
+
+// function getCurrentTime() {
+//   const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+//   const currentTime = new Date().toLocaleTimeString('en-US', options);
+//   return currentTime;
+// }
+
+// function getTomorrowTime() {
+//   const now = new Date();
+//   const tomorrow = new Date(now);
+//   tomorrow.setDate(tomorrow.getDate() + 1);
+//   const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+//   const tomorrowTime = tomorrow.toLocaleTimeString('en-US', options);
+//   return tomorrowTime;
+// }
+
+// // Usage
+// const CurrentTime = getCurrentTime();
+// const tomorrowTime = getTomorrowTime();
+
+// console.log("Current time:", CurrentTime);
+// console.log("Time for tomorrow:", tomorrowTime);

@@ -22,9 +22,13 @@
             <div class="rectangle">
                 <div class="title cairo">Jadwal Masuk Waktu Sholat</div>
                 <div class="waktuSekarang cairo">
-                    Waktu Saat ini: <b><span class="currentTime"></span></b>
+                    Waktu Saat ini: <b><span class="currentTime"></span></b> || Hari/Tanggal: <b>
+                        <%= tanggal %>
+                    </b>
                     <br>
-                    Waktu Sholat selanjutnya <b><span class="nextPrayerTime"></span></b> pukul <b><span class="timePrayer"></span></b>
+                    Waktu Sholat selanjutnya <b><span class="nextPrayerTime"></span></b><span
+                            class="timePrayer"></span>
+                    <footer class="dev">By Hafiy</footer>
                 </div>
             </div>
             <div class="Carousel-slider">
@@ -46,54 +50,57 @@
         </section>
     </div>
     <script>
-function updateTime() {
-    const currentTimeElement = document.getElementsByClassName('currentTime')[0];
-    const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
-    const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
-    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    const currentTime = new Date().toLocaleTimeString('en-US', options);
+        function updateTime() {
+            const currentTimeElement = document.getElementsByClassName('currentTime')[0];
+            const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
+            const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const currentTime = new Date().toLocaleTimeString('en-US', options);
 
-    var prayerTimeNow;
-    var timePrayer;
+            var prayerTimeNow;
+            var timePrayer;
 
 
-    // Display current time
-    currentTimeElement.innerHTML = currentTime;
+            // Display current time
+            currentTimeElement.innerHTML = currentTime;
 
-    // Get current time
-    const now = new Date();
-    const currentHours = now.getHours();
-    const currentMinutes = now.getMinutes();
-    const currentSeconds = now.getSeconds();
+            // Get current time
+            const now = new Date();
+            const currentHours = now.getHours();
+            const currentMinutes = now.getMinutes();
+            const currentSeconds = now.getSeconds();
 
-    // Check current prayer time
-    if (currentTime < '<%= waktuSubuh %>') {
-        prayerTimeNow = "Sholat Subuh";
-        timePrayer = '<%= waktuSubuh %>';
-    } else if (currentTime < '<%= waktuDzuhur %>') {
-        prayerTimeNow = "Sholat Dzuhur";
-        timePrayer = '<%= waktuDzuhur %>';
-    } else if (currentTime < '<%= waktuAshar %>') {
-        prayerTimeNow = "Sholat Ashar";
-        timePrayer = '<%= waktuAshar %>';
-    } else if (currentTime < '<%= waktuMaghrib %>') {
-        prayerTimeNow = "Sholat Maghrib";
-        timePrayer = '<%= waktuMaghrib %>';
-    } else if (currentTime < '<%= waktuIsya %>') {
-        prayerTimeNow = "Sholat Isya";
-        timePrayer = '<%= waktuIsya %>';
-    }
+            // Check current prayer time
+            if (currentTime < '<%= waktuSubuh %>') {
+                prayerTimeNow = "Sholat Subuh";
+                timePrayer = '</b> pukul <b> <%= waktuSubuh %>';
+            } else if (currentTime < '<%= waktuDzuhur %>') {
+                prayerTimeNow = "Sholat Dzuhur";
+                timePrayer = '</b> pukul <b> <%= waktuDzuhur %>';
+            } else if (currentTime < '<%= waktuAshar %>') {
+                prayerTimeNow = "Sholat Ashar";
+                timePrayer = '</b> pukul <b> <%= waktuAshar %>';
+            } else if (currentTime < '<%= waktuMaghrib %>') {
+                prayerTimeNow = "Sholat Maghrib";
+                timePrayer = '</b> pukul <b> <%= waktuMaghrib %>';
+            } else if (currentTime < '<%= waktuIsya %>') {
+                prayerTimeNow = "Sholat Isya";
+                timePrayer = '</b> pukul <b> <%= waktuIsya %>';
+            } else if (currentTime > '<%= waktuIsya %>') {
+                prayerTimeNow = "Sholat Subuh";
+                timePrayer = '';
+            }
 
-    // Update "Waktu Sholat Selanjutnya" section
-    nextPrayerTimeElement.innerHTML = prayerTimeNow;
-    prayerTimeElement.innerHTML = timePrayer;
-}
+            // Update "Waktu Sholat Selanjutnya" section
+            nextPrayerTimeElement.innerHTML = prayerTimeNow;
+            prayerTimeElement.innerHTML = timePrayer;
+        }
 
-// Initial call to updateTime
-updateTime();
+        // Initial call to updateTime
+        updateTime();
 
-// Call updateTime every second
-setInterval(updateTime, 1000);
+        // Call updateTime every second
+        setInterval(updateTime, 1000);
 
     </script>
 
