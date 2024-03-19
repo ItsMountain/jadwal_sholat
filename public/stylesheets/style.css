@@ -24,12 +24,13 @@ section {
     padding-bottom: 20px;
 }
 
+/* not used */
 mark {
     background-color: yellow;
     color: black;
     font-weight: bold;
-    padding: 0em 0.1em; /* height and width */
-    margin: 0.3em; /* margin for spacing */
+    padding: 0em 0.1em;
+    margin: 0.3em;
 }
 
 .shape-header {
@@ -128,27 +129,29 @@ mark {
     "slnt" 0;
 }
 
-/* Centering the rectangle */
+/* not used */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensures the container covers the entire viewport */
+    min-height: 100vh;
 }
 
-/* Rectangle styles */
+
 .rectangle {
-    width: 90%; /* Responsive width */
-    width: 920px; /* Limiting maximum width */
-    height: 250px; /* Fixed height */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .12);
+    width: 90%;
+    width: 930px;
+    height: 250px;
     background-color: #01370A;
-    border: 5px solid #eeeeee;
-    border-radius: 15px;
-    text-align: center; /* Centering text horizontally */
+    text-align: center;
     padding: 20px;
     margin: auto;
     margin-top: 20px;
+    border: 5px solid #eeeeee;
+    border-radius: 15px;
 }
+
 
 .title {
     font-size: 50px;
@@ -165,7 +168,7 @@ mark {
 
 .dev { /* penulis memohonkan agar tidak dihapus 🙏 */
     font-size: 18px;
-    padding-right: 805px;
+    padding-right: 817px;
     padding-top: 15px;
     color: #eeeeee;
 }
@@ -206,7 +209,7 @@ mark {
 }
 
 .posterinfo1 {
-    background: url(../images/info1.png);
+    background: url(../images/tvledjadwalimam915.png);
     border-radius: 20px !important;
 }
 
