@@ -24,7 +24,10 @@ app.set("view engine", "ejs");
 // wait for the fetchRequest to resolve and then render the page
 fetchRequest.then((waktu) => {
     const jadwalData = waktu.data.jadwal;
-    const tanggal = jadwalData.tanggal;
+
+    let tanggal = jadwalData.tanggal;
+    tanggal = tanggal.replace('Minggu', 'Ahad');
+    
     const waktuSubuh = jadwalData.subuh;
     const waktuTerbit = jadwalData.terbit;
     const waktuDzuhur = jadwalData.dzuhur;
