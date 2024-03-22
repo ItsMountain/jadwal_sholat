@@ -27,13 +27,18 @@ fetchRequest.then((waktu) => {
 
     let tanggal = jadwalData.tanggal;
     tanggal = tanggal.replace('Minggu', 'Ahad');
-    
+
     const waktuSubuh = jadwalData.subuh;
     const waktuTerbit = jadwalData.terbit;
-    const waktuDzuhur = jadwalData.dzuhur;
+    let waktuDzuhur = jadwalData.dzuhur;
     const waktuAshar = jadwalData.ashar;
     const waktuMaghrib = jadwalData.maghrib;
     const waktuIsya = jadwalData.isya;
+
+    const dayOfWeek = new Date(tanggal).getDay();
+    if (dayOfWeek === 5) {
+        waktuDzuhur = "Jum'at";
+    }
 
     app.get("/", (req, res) => {
       res.render("index", {
