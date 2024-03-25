@@ -25,8 +25,7 @@ app.set("view engine", "ejs");
 fetchRequest.then((waktu) => {
     const jadwalData = waktu.data.jadwal;
 
-    let tanggal = jadwalData.tanggal;
-    tanggal = tanggal.replace('Minggu', 'Ahad');
+    const tanggal = jadwalData.tanggal;
 
     const waktuSubuh = jadwalData.subuh;
     const waktuTerbit = jadwalData.terbit;
@@ -39,6 +38,8 @@ fetchRequest.then((waktu) => {
     if (dayOfWeek === 5) {
         waktuDzuhur = "Jum'at";
     }
+
+    // console.log(tanggal)
 
     app.get("/", (req, res) => {
       res.render("index", {
