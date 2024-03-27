@@ -27,7 +27,7 @@
                     Waktu Sholat selanjutnya <b><span class="nextPrayerTime"></span></b><span class="timePrayer"></span>
                     <footer class="dev">By Hafiy 9A</footer> <!-- penulis memohonkan agar tidak dihapus 🙏 -->
                 </div>
-                
+
             </div>
             <div class="Carousel-slider">
                 <div class="slider-item poster1"></div>
@@ -99,10 +99,17 @@
             fetch('/fetchTanggal') // Fetch the tanggal data from the server
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('tanggal').textContent = data.tanggal; // Update the tanggal content
+                    let tanggal = data.tanggal;
+                    const dateParts = tanggal.split(','); // Split the tanggal into parts
+                    const dayOfWeek = new Date(dateParts[1].trim()).getDay(); // Get the day of the week
+                    if (dayOfWeek === 4) {
+                        tanggal = tanggal.replace('Minggu', 'Ahad'); // Replace "Minggu" with "Ahad"
+                    }
+                    document.getElementById('tanggal').textContent = tanggal; // Update the tanggal content
                 })
                 .catch(error => console.error('Error updating tanggal:', error));
         }
+
 
         // Call updateTanggal initially and every 24 hours
         updateTanggal();
