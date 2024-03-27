@@ -80,6 +80,19 @@ fetchRequest.then((waktu) => {
         waktuIsya,
       });
     });
+
+    app.get('/fetchTanggal', (req, res) => {
+      // Fetch the tanggal data and send it as JSON
+      fetchRequest.then((waktu) => {
+          const jadwalData = waktu.data.jadwal;
+          const tanggal = jadwalData.tanggal;
+          res.json({ tanggal });
+      })
+      .catch((error) => {
+          console.error("Error fetching tanggal data:", error);
+          res.status(500).json({ error: 'Internal Server Error' });
+      });
+  });  
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
