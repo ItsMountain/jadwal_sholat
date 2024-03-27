@@ -3,8 +3,8 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const fetchRequest = require("./controllers/apiController.js");
-
-const currentTime = new Date();
+let currentTime = new Date();
+let tanggal = ''; // Initialize tanggal variable
 
 app.use(
   express.static(path.join(__dirname, "public"), {
@@ -21,11 +21,25 @@ app.use("/controllers", express.static(path.join(__dirname, "controllers")));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-// wait for the fetchRequest to resolve and then render the page
+function fetchDataAndUpdateTanggal() {
+  fetchRequest.then((waktu) => {
+    const jadwalData = waktu.data.jadwal;
+    tanggal = jadwalData.tanggal;
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
+}
+
+fetchDataAndUpdateTanggal();
+
+setInterval(fetchDataAndUpdateTanggal, 24 * 60 * 60 * 1000);
+
+
 fetchRequest.then((waktu) => {
     const jadwalData = waktu.data.jadwal;
 
-    const tanggal = jadwalData.tanggal;
+    // const tanggal = jadwalData.tanggal;
 
     const waktuSubuh = jadwalData.subuh;
     const waktuTerbit = jadwalData.terbit;
