@@ -22,10 +22,10 @@
             <div class="rectangle">
                 <div class="title cairo">Jadwal Masuk Waktu Sholat</div>
                 <div class="waktuSekarang cairo">
-                    Waktu Saat ini: <b><span class="currentTime"></span></b> || Hari/Tanggal: <b id="tanggal"></b>
+                    Waktu saat ini: <b><span class="currentTime"></span></b> &nbsp;||&nbsp; Hari/Tanggal: <b class="tanggal"></b>
                     <br>
                     Waktu Sholat selanjutnya <b><span class="nextPrayerTime"></span></b><span class="timePrayer"></span>
-                    <footer class="dev">By Hafiy 9A</footer> <!-- penulis memohonkan agar tidak dihapus 🙏 -->
+                    <footer class="dev">By Hafiy</footer> <!-- penulis memohonkan agar tidak dihapus 🙏 -->
                 </div>
 
             </div>
@@ -48,34 +48,46 @@
         </section>
     </div>
     <script>
-        function updateTime() {
-            const currentTimeElement = document.getElementsByClassName('currentTime')[0];
-            const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
-            const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
-            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const tanggalElement = document.getElementsByClassName('tanggal')[0];
+        const currentTimeElement = document.getElementsByClassName('currentTime')[0];
+        const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
+        const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
+        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+        var prayerTimeNow;
+        var timePrayer;
+
+        function updateDateAndTime() {
             const currentTime = new Date().toLocaleTimeString('en-US', options);
-
-            var prayerTimeNow;
-            var timePrayer;
-
-
-            // Display current time
             currentTimeElement.innerHTML = currentTime;
 
-            // Get current time
             const now = new Date();
             const currentHours = now.getHours();
             const currentMinutes = now.getMinutes();
             const currentSeconds = now.getSeconds();
-
-            // Check current prayer time
+            const date = now.getDate();
+            const month = now.getMonth();
+            const year = now.getFullYear();
+            
+            const dayOfWeek = now.getDay();
+            const daysOfWeek = ["Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+            const dayName = daysOfWeek[dayOfWeek];
+            
+            const tanggal = `${dayName}, ${date}/${month}/${year}`;
+            tanggalElement.textContent = tanggal;
 
             if (currentTime < '<%= waktuSubuh %>') {
                 prayerTimeNow = "Sholat Subuh";
                 timePrayer = '</b> pukul <b> <%= waktuSubuh %>';
-            } else if (currentTime < '<%= waktuDzuhur %>') {
-                prayerTimeNow = "Sholat Dzuhur";
-                timePrayer = '</b> pukul <b> <%= waktuDzuhur %>';
+            }
+            else if (currentTime < '<%= waktuDzuhur %>') {
+                if (dayName === "Jum'at") {
+                    prayerTimeNow = "Sholat Jum'at"
+                    timePrayer = '</b> pukul <b> <%= waktuDzuhur %>';
+                } else {
+                    prayerTimeNow = "Sholat Dzuhur";
+                    timePrayer = '</b> pukul <b> <%= waktuDzuhur %>';
+                }
             } else if (currentTime < '<%= waktuAshar %>') {
                 prayerTimeNow = "Sholat Ashar";
                 timePrayer = '</b> pukul <b> <%= waktuAshar %>';
@@ -90,37 +102,12 @@
                 timePrayer = '';
             }
 
-            // Update "Waktu Sholat Selanjutnya" section
             nextPrayerTimeElement.innerHTML = prayerTimeNow;
             prayerTimeElement.innerHTML = timePrayer;
         }
 
-        function updateTanggal() {
-            fetch('/fetchTanggal') // Fetch the tanggal data from the server
-                .then(response => response.json())
-                .then(data => {
-                    let tanggal = data.tanggal;
-                    const dateParts = tanggal.split(','); // Split the tanggal into parts
-                    const dayOfWeek = new Date(dateParts[1].trim()).getDay(); // Get the day of the week
-                    if (dayOfWeek === 4) {
-                        tanggal = tanggal.replace('Minggu', 'Ahad'); // Replace "Minggu" with "Ahad"
-                    }
-                    document.getElementById('tanggal').textContent = tanggal; // Update the tanggal content
-                })
-                .catch(error => console.error('Error updating tanggal:', error));
-        }
-
-
-        // Call updateTanggal initially and every 24 hours
-        updateTanggal();
-        setInterval(updateTanggal, 24 * 60 * 60 * 1000);
-
-
-        // Initial call to updateTime
-        updateTime();
-
-        // Call updateTime every second
-        setInterval(updateTime, 1000);
+        updateDateAndTime();
+        setInterval(updateDateAndTime, 1000);
 
     </script>
 
