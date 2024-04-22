@@ -32,6 +32,9 @@ function fetchDataAndRenderPage() {
       const waktuMaghrib = jadwalData.maghrib;
       const waktuIsya = jadwalData.isya;
 
+      // console.log(tanggal);
+      console.log('\x1b[36m%s\x1b[0m', tanggal)
+
       app.get("/", (req, res) => {
         res.render("index", {
           currentTime,

@@ -22,7 +22,8 @@
             <div class="rectangle">
                 <div class="title cairo">Jadwal Masuk Waktu Sholat</div>
                 <div class="waktuSekarang cairo">
-                    Waktu saat ini: <b><span class="currentTime"></span></b> &nbsp;||&nbsp; Hari/Tanggal: <b class="tanggal"></b>
+                    Waktu saat ini: <b><span class="currentTime"></span></b> &nbsp;||&nbsp; Hari/Tanggal: <b
+                        class="tanggal"></b>
                     <br>
                     Waktu Sholat selanjutnya <b><span class="nextPrayerTime"></span></b><span class="timePrayer"></span>
                     <footer class="dev">By Hafiy</footer> <!-- penulis memohonkan agar tidak dihapus 🙏 -->
@@ -46,6 +47,7 @@
             </div>
 
         </section>
+        <div id="timeDifference"></div>
     </div>
     <script>
         const tanggalElement = document.getElementsByClassName('tanggal')[0];
@@ -53,9 +55,6 @@
         const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
         const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
         const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-
-        var prayerTimeNow;
-        var timePrayer;
 
         function updateDateAndTime() {
             const currentTime = new Date().toLocaleTimeString('en-US', options);
@@ -66,15 +65,30 @@
             const currentMinutes = now.getMinutes();
             const currentSeconds = now.getSeconds();
             const date = now.getDate();
-            const month = now.getMonth();
+            const month = now.getMonth() + 1;
             const year = now.getFullYear();
-            
+
             const dayOfWeek = now.getDay();
             const daysOfWeek = ["Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
             const dayName = daysOfWeek[dayOfWeek];
-            
+
             const tanggal = `${dayName}, ${date}/${month}/${year}`;
             tanggalElement.textContent = tanggal;
+
+            const prayerTime = new Date(year, month - 1, date, currentHours, currentMinutes); // Assuming prayer time is today
+            const timeDifference = prayerTime.getTime() - now.getTime();
+            const timeDifferenceInSeconds = Math.abs(timeDifference) / 1000;
+
+            const hoursDifference = Math.floor(timeDifferenceInSeconds / 3600);
+            const minutesDifference = Math.floor((timeDifferenceInSeconds % 3600) / 60);
+            const secondsDifference = Math.floor(timeDifferenceInSeconds % 60);
+
+            // Display time difference
+            const timeDifferenceString = `Time until ${prayerTime.toLocaleTimeString('en-US', options)}: ${hoursDifference} hours, ${minutesDifference} minutes, ${secondsDifference} seconds`;
+            document.getElementById('timeDifference').textContent = timeDifferenceString;
+
+            let prayerTimeNow;
+            let timePrayer;
 
             if (currentTime < '<%= waktuSubuh %>') {
                 prayerTimeNow = "Sholat Subuh";
