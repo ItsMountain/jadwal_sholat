@@ -50,14 +50,14 @@
         <!-- <div id="timeDifference"></div> -->
     </div>
     <script>
-        const tanggalElement = document.getElementsByClassName('tanggal')[0];
-        const currentTimeElement = document.getElementsByClassName('currentTime')[0];
-        const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
-        const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
-        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-
+        
         function updateDateAndTime() {
+            const currentTimeElement = document.getElementsByClassName('currentTime')[0];
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             const currentTime = new Date().toLocaleTimeString('en-US', options);
+            const tanggalElement = document.getElementsByClassName('tanggal')[0];
+            const prayerTimeElement = document.getElementsByClassName('timePrayer')[0];
+            const nextPrayerTimeElement = document.getElementsByClassName('nextPrayerTime')[0];
             currentTimeElement.innerHTML = currentTime;
 
             const now = new Date();
@@ -82,10 +82,6 @@
             const hoursDifference = Math.floor(timeDifferenceInSeconds / 3600);
             const minutesDifference = Math.floor((timeDifferenceInSeconds % 3600) / 60);
             const secondsDifference = Math.floor(timeDifferenceInSeconds % 60);
-
-            // Display time difference
-            const timeDifferenceString = `Time until ${prayerTime.toLocaleTimeString('en-US', options)}: ${hoursDifference} hours, ${minutesDifference} minutes, ${secondsDifference} seconds`;
-            document.getElementById('timeDifference').textContent = timeDifferenceString;
 
             let prayerTimeNow;
             let timePrayer;
