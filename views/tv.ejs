@@ -30,27 +30,29 @@
                 </div>
 
             </div>
-            <div class="Carousel-slider">
-                <div class="slider-item poster1"></div>
-                <div class="slider-item poster2"></div>
-                <div class="slider-item poster3"></div>
-                <div class="slider-item poster4"></div>
-                <div class="slider-item poster5"></div>
-            </div>
 
-            <div class="Shape-info">
-                <div class="frame-info posterinfo1"></div>
-            </div>
 
-            <div class="shape-header">
-                <div class="img-header imagefooter"></div>
-            </div>
-
-        </section>
-        <!-- <div id="timeDifference"></div> -->
     </div>
+    <div class="Carousel-slider">
+        <div class="slider-item poster1"></div>
+        <div class="slider-item poster2"></div>
+        <div class="slider-item poster3"></div>
+        <div class="slider-item poster4"></div>
+        <div class="slider-item poster5"></div>
+    </div>
+
+    <div class="Shape-info">
+        <div class="frame-info posterinfo1"></div>
+    </div>
+
+    <div class="shape-header">
+        <div class="img-header imagefooter"></div>
+    </div>
+
+    </section>
+    </div>
+
     <script>
-        
         function updateDateAndTime() {
             const currentTimeElement = document.getElementsByClassName('currentTime')[0];
             const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -118,12 +120,11 @@
 
         updateDateAndTime();
         setInterval(updateDateAndTime, 1000);
-
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/micro-slider@1.0.9/dist/micro-slider.min.js"></script>
-    <script src="/controllers/tv.js"></script>
+    <script src="/controllers/carouselController.js"></script>
 </body>
 
 </html>

@@ -3,6 +3,11 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const fetchRequest = require("./controllers/apiController.js");
+const formatDate = require("./controllers/dateController.js");
+
+const today = new Date();
+const formattedDate = formatDate(today);
+
 let currentTime = new Date();
 
 app.use(
@@ -21,7 +26,7 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 function fetchDataAndRenderPage() {
-  fetchRequest
+  fetchRequest()
     .then((waktu) => {
       const jadwalData = waktu.data.jadwal;
       const tanggal = jadwalData.tanggal;
@@ -34,7 +39,7 @@ function fetchDataAndRenderPage() {
 
       app.get("/", (req, res) => {
         res.render("index", {
-          currentTime,
+          currentTime: new Date(), // or use the fetched data if needed
           tanggal,
           waktuSubuh,
           waktuTerbit,
@@ -47,7 +52,7 @@ function fetchDataAndRenderPage() {
 
       app.get("/tv", (req, res) => {
         res.render("tv", {
-          currentTime,
+          currentTime: new Date(), // or use the fetched data if needed
           tanggal,
           waktuSubuh,
           waktuTerbit,
@@ -58,58 +63,32 @@ function fetchDataAndRenderPage() {
         });
       });
 
-      app.get('/fetchTanggal', (req, res) => {
-        fetchRequest.then((waktu) => {
-          const jadwalData = waktu.data.jadwal;
-          const tanggal = jadwalData.tanggal;
-          res.json({ tanggal });
-        }).catch((error) => {
-          console.error("Error fetching tanggal data:", error);
-          res.status(500).json({ error: 'Internal Server Error' });
-        });
+      app.get("/fetchTanggal", (req, res) => {
+        fetchRequest()
+          .then((waktu) => {
+            const jadwalData = waktu.data.jadwal;
+            res.json({ waktu });
+          })
+          .catch((error) => {
+            console.error("Error fetching tanggal data:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+          });
       });
-
-      // console.log('\x1b[36m%s\x1b[0m', tanggal);
-      
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-
-    
 }
 
-// Initial fetch and render
 fetchDataAndRenderPage();
 
-// Periodically fetch data and render the page every day (86400000 milliseconds = 24 hours)
-setInterval(fetchDataAndRenderPage, 86400000);
+// Set the interval to fetch data every 24 hours (86400000 milliseconds)
+// const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+const oneDayInMilliseconds = 10000000;
+
+setInterval(fetchDataAndRenderPage, oneDayInMilliseconds);
 
 app.listen(port, () => {
   console.log(`App listening on http://localhost:${port}/`);
 });
-
-// tests here
-
-// function getCurrentTime() {
-//   const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-//   const currentTime = new Date().toLocaleTimeString('en-US', options);
-//   return currentTime;
-// }
-
-// function getTomorrowTime() {
-//   const now = new Date();
-//   const tomorrow = new Date(now);
-//   tomorrow.setDate(tomorrow.getDate() + 1);
-//   const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-//   const tomorrowTime = tomorrow.toLocaleTimeString('en-US', options);
-//   return tomorrowTime;
-// }
-
-// // Usage
-// const CurrentTime = getCurrentTime();
-// const tomorrowTime = getTomorrowTime();
-
-// console.log("Current time:", CurrentTime);
-// console.log("Time for tomorrow:", tomorrowTime);
 
